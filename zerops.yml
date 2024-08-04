@@ -1,0 +1,18 @@
+zerops:
+  - setup: python
+    build:
+      os: alpine
+      base: python@3.12
+      addToRunPrepare:
+        - requirements.txt
+      deployFiles:
+        - /
+    run:
+      os: alpine
+      base: python@3.12
+      prepareCommands:
+        - pip install --no-cache-dir -r requirements.txt
+      ports:
+        - port: 8000
+          httpSupport: true
+      start: python app.py
